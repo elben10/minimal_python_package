@@ -1,10 +1,10 @@
 {
-    "full_name": "Audrey Roy",
-    "email": "audreyr@gmail.com",
+    "full_name": "John Smith",
+    "email": "john@smith.com",
     "project_name": "Complexity",
     "repo_name": "complexity",
-    "project_short_description": "Refreshingly simple static site generator.",
-    "year": "2013",
-    "version": "0.1.1",
-    "github_username": "AudreyRoy"
+    "project_short_description": "A complex package",
+    "year": "209",
+    "version": "0.1.0",
+    "github_username": "johnsmith"
 }
