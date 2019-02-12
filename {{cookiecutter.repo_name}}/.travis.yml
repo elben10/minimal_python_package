@@ -58,18 +58,31 @@ matrix:
       env: PYTHON_VERSION=${PYTHON37}
       before_install: 
         - source scripts/windows.sh
+        
     - name: "Windows: Python3.8-dev"
       os: windows
       language: sh
       env: PYTHON_VERSION=${PYTHON38}
       before_install: 
         - source scripts/windows.sh
+        
+    - name: "Linux: Python3.7 - DOCS"
+      python: 3.7
+      dist: xenial
+      sudo: true
+      install:
+        - python --version
+        - python -m pip install --upgrade pip
+        - pip install .
+        - pip install .[docs]
+      script:
+        - cd docs
+        - make html
 
 install:
   - python --version
-  - pip install --upgrade pip
+  - python -m pip install --upgrade pip
   - pip install .
-  - pip install .[docs]
   - pip install .[test]
   
 script:
