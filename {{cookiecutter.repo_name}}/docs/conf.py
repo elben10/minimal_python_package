@@ -44,13 +44,20 @@ release = '{{cookiecutter.version}}'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'autoapi.extension',
+    'recommonmark',
     'sphinx.ext.autodoc',
     'sphinx.ext.doctest',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     'sphinx.ext.mathjax',
-    'recommonmark',
 ]
+
+# Document Python Code
+autoapi_type = 'python'
+autoapi_dirs = ['../{{cookiecutter.repo_name}}']
+autoapi_file_pattern = '*.py'
+autoapi_options = ['members', 'undoc-members', 'private-members']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

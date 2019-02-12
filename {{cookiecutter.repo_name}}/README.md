@@ -11,8 +11,9 @@ You can learn more in the following section [usage](usage.md)
 
 ```eval_rst
 .. toctree::
-    :hidden:
-    :glob:
+   :glob:
+   :maxdepth: 2
+   :hidden:
 
-    *
+   *
 ```

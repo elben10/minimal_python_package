@@ -3,6 +3,7 @@ from setuptools import find_packages, setup
 docs_requirements = [
     "recommonmark",
     "sphinx",
+    "sphinx-autoapi"
 ]
 
 installation_requirements = []
