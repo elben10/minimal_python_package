@@ -16,6 +16,11 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
+import recommonmark
+from recommonmark.parser import CommonMarkParser
+from recommonmark.transform import AutoStructify
+
+
 
 # -- Project information -----------------------------------------------------
 
@@ -24,9 +29,9 @@ copyright = '{{cookiecutter.year}}, {{cookiecutter.full_name}}'
 author = '{{cookiecutter.full_name}}'
 
 # The short X.Y version
-version = ''
+version = '{{cookiecutter.version}}'
 # The full version, including alpha/beta/rc tags
-release = 'VERSION'
+release = '{{cookiecutter.version}}'
 
 
 # -- General configuration ---------------------------------------------------
@@ -44,6 +49,7 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     'sphinx.ext.mathjax',
+    'recommonmark',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -52,8 +58,8 @@ templates_path = ['_templates']
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 #
-# source_suffix = ['.rst', '.md']
-source_suffix = '.rst'
+source_suffix = ['.rst', '.md']
+
 
 # The master toctree document.
 master_doc = 'index'
@@ -79,28 +85,27 @@ pygments_style = 'sphinx'
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
-
-# Theme options are theme-specific and customize the look and feel of a theme
-# further.  For a list of options available for each theme, see the
-# documentation.
-#
-# html_theme_options = {}
+html_theme = "alabaster"
+html_sidebars = {
+    "**": [
+        "about.html",
+        "navigation.html",
+        "relations.html",
+        "searchbox.html",
+        "donate.html",
+    ]
+}
+html_theme_options = {
+    "description": "A light, configurable Sphinx theme",
+    "fixed_sidebar": True,
+    "github_repo": False,
+    "github_user": False,    
+}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
-
-# Custom sidebar templates, must be a dictionary that maps document names
-# to template names.
-#
-# The default sidebars (for documents that don't match any pattern) are
-# defined by theme itself.  Builtin themes are using these templates by
-# default: ``['localtoc.html', 'relations.html', 'sourcelink.html',
-# 'searchbox.html']``.
-#
-# html_sidebars = {}
 
 
 # -- Options for HTMLHelp output ---------------------------------------------
@@ -171,3 +176,11 @@ intersphinx_mapping = {'https://docs.python.org/': None}
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
+
+
+def setup(app):
+    app.add_config_value('recommonmark_config', {
+        'auto_toc_tree_section': 'Contents',
+        'enable_eval_rst': True,
+    }, True)
+    app.add_transform(AutoStructify)
