@@ -9,7 +9,8 @@ docs_requirements = [
 installation_requirements = []
 
 setup_requirements = [
-    "pytest-runner"
+    "pytest-runner",
+    "sphinx-runner",
 ]
 
 test_requirements = [
