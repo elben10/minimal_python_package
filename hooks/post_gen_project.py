@@ -1,7 +1,8 @@
 #!/usr/bin/env python
-import ctypes, os
+import ctypes
 import os
 import shlex
+import shutil
 import subprocess
 
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
@@ -26,10 +27,19 @@ def gen_link(src, dist):
     if os.name == 'nt' and has_admin() == False:
         link = os.path.join(PROJECT_DIRECTORY, dist)
         target = os.path.join(PROJECT_DIRECTORY, src)
-        subprocess.run(shlex.split(f'mklink /H "{link}" "{target}"'), shell=True)
+        with open(os.devnull, 'wb') as f:
+            subprocess.run(shlex.split(f'mklink /H "{link}" "{target}"'), shell=True, stdout=f)
     else:
         os.symlink(os.path.join(PROJECT_DIRECTORY, src), os.path.join(PROJECT_DIRECTORY, dist))
 
+def rmtree(path):
+    shutil.rmtree(os.path.join(PROJECT_DIRECTORY, path))
 
 if __name__ == '__main__':
-    gen_link('README.md', os.path.join('docs', 'index.md'))
+    if '{{cookiecutter.add_docs}}' == 'yes':
+        gen_link('README.md', os.path.join('docs', 'index.md'))
+    else:
+        rmtree('docs')
+
+    if '{{cookiecutter.add_test}}' == 'no':
+        rmtree('tests')

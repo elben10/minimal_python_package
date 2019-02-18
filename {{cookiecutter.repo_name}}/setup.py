@@ -9,13 +9,13 @@ docs_requirements = [
 installation_requirements = []
 
 setup_requirements = [
+{%- if cookiecutter.add_test == 'yes' %}
     "pytest-runner",
+{%- endif %}
     "sphinx-runner",
 ]
 
-test_requirements = [
-    "pytest",
-]
+test_requirements = [{%- if cookiecutter.add_test == 'yes' %}"pytest",{%- endif %}]
 
 setup(
     name='{{cookiecutter.repo_name}}',

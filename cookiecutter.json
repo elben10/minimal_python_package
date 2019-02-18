@@ -4,7 +4,9 @@
     "project_name": "Complexity",
     "repo_name": "complexity",
     "project_short_description": "A complex package",
-    "year": "209",
+    "year": "2019",
     "version": "0.1.0",
-    "github_username": "johnsmith"
+    "github_username": "johnsmith",
+    "add_docs": ["yes", "no"],
+    "add_test": ["yes", "no"]
 }

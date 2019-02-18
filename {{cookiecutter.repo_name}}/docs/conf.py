@@ -103,7 +103,7 @@ html_sidebars = {
     ]
 }
 html_theme_options = {
-    "description": "A light, configurable Sphinx theme",
+    "description": "{{cookiecutter.project_short_description}}",
     "fixed_sidebar": True,
     "github_repo": False,
     "github_user": False,    
